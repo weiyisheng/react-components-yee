@@ -3,9 +3,18 @@
   "version": "1.0.0",
   "description": "react dialog, tips, alert ...",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/weiyisheng/react-dialog"
   },
-  "author": "",
-  "license": "ISC"
+  "scripts": {},
+  "author": "weiyisheng",
+  "keyword": [
+    "react",
+    "dialog",
+    "react-dialog"
+  ],
+  "dependencies": {
+    "react-motion": "^0.4.7"
+  }
 }
