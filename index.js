@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.Modal = undefined;
 exports.fadeAlert = fadeAlert;
 exports.tips = tips;
 
@@ -22,12 +23,14 @@ var _Tips = require('./src/Tips');
 
 var _Tips2 = _interopRequireDefault(_Tips);
 
+var _Modal = require('./src/Modal');
+
+var _Modal2 = _interopRequireDefault(_Modal);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// import Dialog from './src/Dialog'
-
 //info, warning, error : string text to show (different icon maybe)
-//buttons: [{type: "cancel" || "confirm" || "warning", label: "cancel", onClick: () => {}}, {...}, {...}]
+//buttons: {cancel: {label: "cancel", onClick: () => {}}, confirm: {...}, danger: {...}}
 function fadeAlert(_ref) {
   var info = _ref.info,
       warning = _ref.warning,
@@ -74,3 +77,5 @@ function tips(_ref2) {
       onDisappear: onDisappear }), p);
   }
 }
+
+var Modal = exports.Modal = _Modal2.default;

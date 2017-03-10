@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 
 import FadeAlertComponent from './src/FadeAlert'
 import TipsComponent from './src/Tips'
-// import Dialog from './src/Dialog'
+import ModalComponent from './src/Modal'
 
 //info, warning, error : string text to show (different icon maybe)
 //buttons: {cancel: {label: "cancel", onClick: () => {}}, confirm: {...}, danger: {...}}
@@ -48,3 +48,5 @@ export function tips({info, warning, error, duration, onDisappear}) {
     )
   }
 }
+
+export const Modal = ModalComponent
