@@ -1,9 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import FadeAlertComponent from './src/FadeAlert'
-import TipsComponent from './src/Tips'
-import ModalComponent from './src/Modal'
+import FadeAlertComponent from './FadeAlert'
+import TipsComponent from './Tips'
 
 //info, warning, error : string text to show (different icon maybe)
 //buttons: {cancel: {label: "cancel", onClick: () => {}}, confirm: {...}, danger: {...}}
@@ -49,4 +48,6 @@ export function tips({info, warning, error, duration, onDisappear}) {
   }
 }
 
-export const Modal = ModalComponent
+export const Modal = require('./Modal')
+export const Enhance = require('./enhances')
+export const Input = require('./forms/Input')

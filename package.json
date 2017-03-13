@@ -2,19 +2,23 @@
   "name": "react-components-yee",
   "version": "1.0.3",
   "description": "react dialog, tips, alert ...",
-  "main": "index.js",
+  "main": "./lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/weiyisheng/react-dialog"
+    "url": "https://github.com/weiyisheng/react-components-yee"
   },
-  "scripts": {},
+  "scripts": {
+    "babel-src": "babel src --out-dir lib"
+  },
   "author": "weiyisheng",
   "keyword": [
     "react",
     "dialog",
+    "components",
     "react-dialog"
   ],
   "dependencies": {
-    "react-motion": "^0.4.7"
+    "react-motion": "^0.4.7",
+    "react-utils-yee": "../../web/react-utils-yee"
   }
 }

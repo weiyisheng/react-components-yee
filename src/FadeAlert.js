@@ -1,153 +1,104 @@
-'use strict';
+import React from 'react'
+import { Motion, spring } from 'react-motion'
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+const TextColor = {
+  danger: "#D00202",
+  confirm: "#3c8dbc",
+  cancel: "#909090"
+}
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+const AlertWidth = 380
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+class FadeAlert extends React.Component {
 
-var _react = require('react');
+  constructor(props) {
+    super(props)
 
-var _react2 = _interopRequireDefault(_react);
-
-var _reactMotion = require('react-motion');
-
-var _colors = require('./colors');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var AlertWidth = 380;
-
-var FadeAlert = function (_React$Component) {
-  _inherits(FadeAlert, _React$Component);
-
-  function FadeAlert(props) {
-    _classCallCheck(this, FadeAlert);
-
-    var _this = _possibleConstructorReturn(this, (FadeAlert.__proto__ || Object.getPrototypeOf(FadeAlert)).call(this, props));
-
-    _this.state = {
+    this.state = {
       visible: false
-    };
-    return _this;
+    }
   }
 
-  _createClass(FadeAlert, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      this.setState({
-        visible: true
-      });
-      //$("body").css("overflow", "hidden")
-      document.body.style.overflow = "hidden";
+  componentDidMount() {
+    this.setState({
+      visible: true
+    })
+    //$("body").css("overflow", "hidden")
+    document.body.style.overflow = "hidden"
+  }
+
+  onRest() {
+    const { duration } = this.props
+    const { visible } = this.state
+
+    if(!visible) {
+      const element = document.getElementById(this.props.containerId)
+      element ? document.body.removeChild(element) : void 0
     }
-  }, {
-    key: 'onRest',
-    value: function onRest() {
-      var duration = this.props.duration;
-      var visible = this.state.visible;
+  }
 
+  fadeOut() {
+    this.setState({
+      visible: false
+    })
+    document.body.style.overflow = "auto"
+  }
 
-      if (!visible) {
-        var element = document.getElementById(this.props.containerId);
-        element ? document.body.removeChild(element) : void 0;
-      }
-    }
-  }, {
-    key: 'fadeOut',
-    value: function fadeOut() {
-      this.setState({
-        visible: false
-      });
-      document.body.style.overflow = "auto";
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
+  render() {
+    const { info, warning, error, buttons } = this.props
+    const { visible } = this.state
 
-      var _props = this.props,
-          info = _props.info,
-          warning = _props.warning,
-          error = _props.error,
-          buttons = _props.buttons;
-      var visible = this.state.visible;
+    return (
+      <Motion style={{opacity: spring(visible ? 1 : 0, {stiffness: 210, damping: 20})}}
+        onRest={() => this.onRest()}>
+      {
+        ({opacity}) =>
+          <div style={{...styles.cot, opacity}}>
+            <div style={styles.backdrop}>
+              <div style={styles.alertTop}/>
+              <div style={{...styles.alertBox}}>
+                <div style={styles.infoBox}>
+                  <p style={styles.info}>
+                    {
+                      //考虑增加不同的icon 以区分不同的内容
+                    }
+                    {error || warning || info}
+                  </p>
+                </div>
 
-
-      return _react2.default.createElement(
-        _reactMotion.Motion,
-        { style: { opacity: (0, _reactMotion.spring)(visible ? 1 : 0, { stiffness: 210, damping: 20 }) },
-          onRest: function onRest() {
-            return _this2.onRest();
-          } },
-        function (_ref) {
-          var opacity = _ref.opacity;
-          return _react2.default.createElement(
-            'div',
-            { style: _extends({}, styles.cot, { opacity: opacity }) },
-            _react2.default.createElement(
-              'div',
-              { style: styles.backdrop },
-              _react2.default.createElement('div', { style: styles.alertTop }),
-              _react2.default.createElement(
-                'div',
-                { style: _extends({}, styles.alertBox) },
-                _react2.default.createElement(
-                  'div',
-                  { style: styles.infoBox },
-                  _react2.default.createElement(
-                    'p',
-                    { style: styles.info },
-                    error || warning || info
-                  )
-                ),
-                _react2.default.createElement(
-                  'div',
-                  { style: styles.buttonBox },
-                  (buttons || []).map(function (button) {
-                    var type = button.type,
-                        label = button.label,
-                        _onClick = button.onClick;
-
-                    return _react2.default.createElement(
-                      'div',
-                      { key: label,
-                        style: _extends({}, styles.button, { width: AlertWidth / buttons.length }),
-                        onClick: function onClick() {
-                          _this2.fadeOut();_onClick && _onClick();
-                        } },
-                      _react2.default.createElement(
-                        'p',
-                        { style: _extends({}, styles.buttonText, {
-                            color: type === "danger" ? _colors.TextColor.danger : type === "confirm" ? _colors.TextColor.confirm : type === "cancel" ? _colors.TextColor.cancel : _colors.TextColor.cancel }) },
-                        label
+                <div style={styles.buttonBox}>
+                  {
+                    (buttons || []).map(button => {
+                      const { type, label, onClick } = button
+                      return (
+                        <div key={label}
+                          style={{...styles.button, width: AlertWidth / buttons.length}}
+                          onClick={() => {this.fadeOut(); onClick && onClick()}}>
+                          <p style={{
+                              ...styles.buttonText,
+                              color: type === "danger" ? TextColor.danger :
+                                type === "confirm" ? TextColor.confirm :
+                                type === "cancel" ? TextColor.cancel :
+                                TextColor.cancel }}>
+                            {label}
+                          </p>
+                        </div>
                       )
-                    );
-                  })
-                )
-              )
-            )
-          );
-        }
-      );
-    }
-  }]);
+                    })
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+      }
+      </Motion>
+    )
+  }
+}
 
-  return FadeAlert;
-}(_react2.default.Component);
+export default FadeAlert
 
-exports.default = FadeAlert;
-
-
-var styles = {
+const styles = {
   cot: {
     position: "fixed",
     bottom: 0,
@@ -201,4 +152,4 @@ var styles = {
     lineHeight: "42px",
     fontWeight: "500"
   }
-};
+}
