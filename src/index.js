@@ -49,5 +49,4 @@ export function tips({info, warning, error, duration, onDisappear}) {
 }
 
 export const Modal = require('./Modal')
-export const Enhance = require('./enhances')
-export const Input = require('./forms/Input')
+export const Enhances = require('./enhances')

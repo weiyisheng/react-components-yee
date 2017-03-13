@@ -60,10 +60,10 @@ export default ComponsedComponent => class extends React.Component {
 
   render() {
     return <ComponsedComponent
-            {...this.props}
-            {...this.state}
-            onFocus={() => this.onFocus()}
-            onBlur={() => this.onBlur()}/>
+             {...this.props}
+             enhanceProps={{...this.state}}
+             onFocus={() => this.onFocus()}
+             onBlur={() => this.onBlur()}/>
   }
 
 }
