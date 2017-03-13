@@ -1,6 +1,6 @@
 {
   "name": "react-components-yee",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "react dialog, tips, alert ...",
   "main": "./lib/index.js",
   "repository": {
