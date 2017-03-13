@@ -19,6 +19,6 @@
   ],
   "dependencies": {
     "react-motion": "^0.4.7",
-    "react-utils-yee": "../../web/react-utils-yee"
+    "react-utils-yee": "react-utils-yee"
   }
 }
