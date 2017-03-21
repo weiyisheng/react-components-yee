@@ -50,3 +50,6 @@ export function tips({info, warning, error, duration, onDisappear}) {
 
 export const Modal = require('./Modal')
 export const Enhances = require('./enhances')
+export const Card = require('./Card')
+export const List = require('./List')
+export const Drawer = require('./Drawer')
