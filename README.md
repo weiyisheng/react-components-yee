@@ -39,3 +39,4 @@ class YourComponent extends React.Component {
   }
 }
 ```  
+4
